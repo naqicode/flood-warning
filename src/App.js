@@ -2,7 +2,7 @@ import './App.css';
 import BoxOne from './component/pages/BoxOne';
 // import Home from './component/Home';
 import NavBar from './component/NavBar.js';
-
+// import BoxThree from './component/pages/BoxThree';
 
 
 function App() {
@@ -13,9 +13,12 @@ function App() {
         <NavBar />
         <BoxOne />
 
+        {/* <BoxThree /> */}
+
 
 
       {/* The home page is finished */}
+      
       {/* <Home />  */}
       {/* <BoxOne /> */}
 
