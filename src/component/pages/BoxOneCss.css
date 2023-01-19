@@ -25,13 +25,22 @@
     text-align: center;
 }
 
-.popupContent h3 {
-    margin: 0;
-    color: #333;
+.popupContent h4{
+    display: flex;
+    
 }
 
-.popupContent p {
+
+.label {
     margin: 0;
-    color: #888;
+
+
+
 }
+
+.flex {
+    display: flex;
+    justify-content: flex-start;
+}
+
 

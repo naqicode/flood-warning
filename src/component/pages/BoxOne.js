@@ -37,7 +37,7 @@ function BoxOne() {
         //set the countyList for useState()
         setCountyList(
           newData.map((el) => {
-            return el.floodArea.county; //it should be el.floodArea.
+            return el; //it should be el.floodArea.county
           })
         );
 
@@ -96,6 +96,9 @@ function BoxOne() {
             attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
           />
 
+
+
+
           {dataTwo &&
             dataTwo.map((item, index) => {
               return (
@@ -109,22 +112,45 @@ function BoxOne() {
                       iconAnchor: [12, 41],
                     })
                   }
-                  
                 >
 
-                <Popup>
+
+
+
+
+
+
+                <Popup key={index}>
                 <div className="popupContent">
 
-                <h1>Lorem ipsum dolor sit.</h1>
-                <h3>Lorem, ipsum.</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, similique?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, voluptas!</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, adipisci!</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, cum?</p>
+                <h3 className="label">{item.label}</h3>
+
                 
+                  <h4>Area Name:{item.eaAreaName}</h4>
+                  <h4>Nearby River or Sea: {item.riverOrSea}</h4>
+                  <h4>Emergency number to dial: {item.quickDialNumber}</h4>
+                  <h4>Map longitude: {item.long}</h4>
+                  <h4>Map Latitude: {item.lat}</h4>
+                  <h4>FWD code: {item.fwdCode}</h4>
+                  <h4>Description: {item.description}</h4>
+              
+                
+          
+
+
+
                 </div>
                     </Popup>
+               
                   
+
+
+
+
+
+
+
+
                   
                 </Marker>
               );
@@ -142,7 +168,7 @@ function BoxOne() {
       <div className="container">
         <ul className="nobull">
           {countyList &&
-            countyList?.map((ele, index) => <li key={index}>{ele}</li>)}
+            countyList?.map((ele, index) => <li key={index}>{ele.floodArea.county}</li>)}
         </ul>
       </div>
     </div>
