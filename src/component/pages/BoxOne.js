@@ -3,7 +3,9 @@ import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import "./BoxOneCss.css";
-// import ReactModal from "./ReactModal";
+
+//IMporting the city Geometry
+import { statesData } from './NewData';
 
 //Importing modal component to use for modal window
 
@@ -11,11 +13,12 @@ import "./BoxOneCss.css";
 
 
 //Importing the library for the Leaflet Map
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polygon } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import { Icon } from "leaflet";
-const center = [52.15774515198826, -1.8251373028708429];
+
+const center = [52.90330510839568, -1.1862272800848968];
 
 
 
@@ -24,6 +27,8 @@ function BoxOne() {
   //UseState
   const [countyList, setCountyList] = useState("");
   const [dataTwo, setDataTwo] = useState(''); //usestate for second API
+  //NEW DATA
+
 
 
   //Function getCounties
@@ -41,6 +46,8 @@ function BoxOne() {
           })
         );
 
+        //NEW DATA
+        
 
 
       })
@@ -53,7 +60,6 @@ function BoxOne() {
   useEffect(() => {
     getCounties();
   }, [countyList]);
-
 
 
 
@@ -94,7 +100,44 @@ function BoxOne() {
           <TileLayer
             url="https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=QEKtqsx9T1xF2GHc6yu6"
             attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
-          />
+             />
+
+
+
+
+
+          {/* Geo location for the cities to highlight */}
+          {/* Geo location for the cities to highlight */}
+          {/* Geo location for the cities to highlight */}
+          {/* Geo location for the cities to highlight */}
+
+          {
+            statesData.features.map((state, index) => {
+              const coordinates = state.geometry.coordinates[0].map((item) => [item[1], item[0]]);
+
+              return  (<Polygon
+                  key={index}
+                  pathOptions={{
+                    fillColor: '#FD8D3C',
+                    fillOpacity: 0.7,
+                    weight: 2,
+                    opacity: 1,
+                    dashArray: 3,
+                    color: 'white'
+                  }}
+                  positions={coordinates}
+                />)
+            })
+          }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -125,7 +168,6 @@ function BoxOne() {
 
                 <h3 className="label">{item.label}</h3>
 
-                
                   <h4>Area Name:{item.eaAreaName}</h4>
                   <h4>Nearby River or Sea: {item.riverOrSea}</h4>
                   <h4>Emergency number to dial: {item.quickDialNumber}</h4>
@@ -143,6 +185,7 @@ function BoxOne() {
                     </Popup>
                
                   
+
 
 
 
