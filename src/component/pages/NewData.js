@@ -1,4 +1,4 @@
-export const statesData = {
+export const countyCoordinates = {
   type: "FeatureCollection",
   features: [
 

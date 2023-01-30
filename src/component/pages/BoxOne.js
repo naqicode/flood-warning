@@ -4,10 +4,10 @@ import { useState } from "react";
 import { useEffect } from "react";
 import "./BoxOneCss.css";
 
-//IMporting the city Geometry
-import { statesData } from './NewData';
+//Importing NewData file
+import { countyCoordinates } from './NewData';
 
-//Importing modal component to use for modal window
+
 
 
 
@@ -27,7 +27,9 @@ function BoxOne() {
   //UseState
   const [countyList, setCountyList] = useState("");
   const [dataTwo, setDataTwo] = useState(''); //usestate for second API
-  //NEW DATA
+  //NEW DATA useState
+  const [newDatas, setNewDatas] = useState('');
+
 
 
 
@@ -74,7 +76,14 @@ function BoxOne() {
 
 
 
+  //useEffect for NEW DATA
 
+  useEffect(() => {
+    const listOfCounty = countyCoordinates.features;
+    setNewDatas(listOfCounty.map((element) => {
+      return element;
+    }))
+  }, [])
 
 
 
@@ -106,13 +115,13 @@ function BoxOne() {
 
 
 
-          {/* Geo location for the cities to highlight */}
-          {/* Geo location for the cities to highlight */}
-          {/* Geo location for the cities to highlight */}
-          {/* Geo location for the cities to highlight */}
+          {/* Geo location for the counties to highlight */}
+          {/* Geo location for the counties to highlight */}
+          {/* Geo location for the counties to highlight */}
+          {/* Geo location for the counties to highlight */}
 
           {
-            statesData.features.map((state, index) => {
+            countyCoordinates.features.map((state, index) => {
               const coordinates = state.geometry.coordinates[0].map((item) => [item[1], item[0]]);
 
               return  (<Polygon
@@ -210,8 +219,12 @@ function BoxOne() {
 
       <div className="container">
         <ul className="nobull">
-          {countyList &&
-            countyList?.map((ele, index) => <li key={index}>{ele.floodArea.county}</li>)}
+          
+          {/* Added list of the counties from 'NewData.js' file on the left hand side of the page */}
+          {newDatas &&
+            newDatas?.map((ele, index) => <li key={index}>{ele.properties.name}</li>)}
+
+
         </ul>
       </div>
     </div>
