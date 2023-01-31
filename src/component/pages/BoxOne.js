@@ -13,7 +13,7 @@ import { countyCoordinates } from './NewData';
 
 
 //Importing the library for the Leaflet Map
-import { MapContainer, TileLayer, Marker, Popup, Polygon } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polygon} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import { Icon } from "leaflet";
@@ -25,7 +25,7 @@ const center = [52.90330510839568, -1.1862272800848968];
 
 function BoxOne() {
   //UseState
-  const [countyList, setCountyList] = useState("");
+  const [dataOne, setDataOne] = useState("");
   const [dataTwo, setDataTwo] = useState(''); //usestate for second API
   //NEW DATA useState
   const [newDatas, setNewDatas] = useState('');
@@ -42,7 +42,7 @@ function BoxOne() {
         const newData = res.data.items;
         
         //set the countyList for useState()
-        setCountyList(
+        setDataOne(
           newData.map((el) => {
             return el; //it should be el.floodArea.county
           })
@@ -61,7 +61,7 @@ function BoxOne() {
   //useEffect to run the function getCounties once the page loads
   useEffect(() => {
     getCounties();
-  }, [countyList]);
+  }, [dataOne]);
 
 
 
@@ -92,9 +92,16 @@ function BoxOne() {
 
 
   return (
+
+
+
+
+
     <div>
       <div>
         <MapContainer
+        
+        
           center={center}
           zoom={6}
           scrollWheelZoom={true}
@@ -131,10 +138,44 @@ function BoxOne() {
                     fillOpacity: 0.7,
                     weight: 2,
                     opacity: 1,
-                    dashArray: 3,
+                    dashArray: '3',
                     color: 'white'
                   }}
                   positions={coordinates}
+
+
+
+                  eventHandlers={{
+                    mouseover: (e) => {
+                      var layer = e.target;
+                        layer.setStyle({
+                        fillOpacity: 0.7,
+                        weight: 5,
+                        dashArray: '',
+                        color: '#666',
+                        fillColor: '#d45962'
+                      })
+                      
+                    },
+                    mouseout: (e) => {
+                      const layer = e.target;
+                      layer.setStyle({
+                        fillOpacity: 0.7,
+                        weight: 2,
+                        dashArray: '',
+                        color: 'white',
+                        fillColor: '#FD8D3C'
+                      })
+                    },
+                    click: (e) => {
+                      
+                        
+                      
+                      
+                      
+                      
+                    }
+                  }}
                 />)
             })
           }
@@ -218,11 +259,15 @@ function BoxOne() {
       </div>
 
       <div className="container">
+       
         <ul className="nobull">
           
           {/* Added list of the counties from 'NewData.js' file on the left hand side of the page */}
           {newDatas &&
-            newDatas?.map((ele, index) => <li key={index}>{ele.properties.name}</li>)}
+            newDatas?.map((ele, index) => <li key={index}    >{ele.properties.name}</li>)
+            
+          }
+
 
 
         </ul>
