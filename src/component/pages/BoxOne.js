@@ -30,6 +30,10 @@ function BoxOne() {
   //NEW DATA useState
   const [newDatas, setNewDatas] = useState('');
 
+  //MODAL FOR ALERTS SECTION
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedData, setSelectedData] = useState(null);
+
 
 
 
@@ -87,14 +91,23 @@ function BoxOne() {
 
 
 
+  //Handle Click function for ALERT SECTION
+  const handleClick = (data) => {
+    setSelectedData(data);
+    setModalOpen(true);
+  }
+
+
+
+
+
+
+
 
 
 
 
   return (
-
-
-
 
 
     <div>
@@ -107,10 +120,11 @@ function BoxOne() {
           scrollWheelZoom={true}
           style={{
             width: "70vw",
-            height: "70vh",
+            height: "74vh",
             position: "relative",
             left: "500px",
-            top: "50px",
+            display: "flex",
+            top: "62px",
           }}
         >
           <TileLayer
@@ -252,26 +266,67 @@ function BoxOne() {
 
         </MapContainer>
 
-   
-
-
-
+  
       </div>
 
-      <div className="container">
-       
+
+
+
+
+      
+
+
+     
+
         <ul className="nobull">
-          
-          {/* Added list of the counties from 'NewData.js' file on the left hand side of the page */}
-          {newDatas &&
-            newDatas?.map((ele, index) => <li key={index}    >{ele.properties.name}</li>)
-            
-          }
+            <h3>Alets</h3>
+
+              {dataOne &&
+              dataOne?.map((ele, index) => (
+              <li key={index}> 
+              <button onClick={() => handleClick(ele)} className="button-list">{ele.floodArea.riverOrSea}</button></li>
+              ))
+            }
+
+
+              {modalOpen && (
+                <div className="modal-overlay">
+                  <div className="modal">
+
+                    <div className="info">
+                    <p>Description: {selectedData.description}</p>
+                    <p>Area Name: {selectedData.eaAreaName}</p>
+                    <p>County Name: {selectedData.floodArea.county}</p>
+                    <p>River Name: {selectedData.floodArea.riverOrSea}</p>
+                    <p>Flood Area ID: {selectedData.floodAreaID}</p>
+                    <p>Message: {selectedData.message}</p>
+                    <p>Severity Des: {selectedData.severity}</p>
+                    <p>Severity Level: {selectedData.severityLevel}</p>
+                    <p>Time Of message Change: {selectedData.timeMessageChanged}</p>
+                    <p>Time Raised: {selectedData.timeRaised}</p>
+                    <p>Time The severity Changed: {selectedData.timeSeverityChanged}</p>
+                    </div>
+
+
+                    <button onClick={() => setModalOpen(false)}>Close</button>
+                  </div>
+                </div>
+              )}
+
+
+
+
+
 
 
 
         </ul>
-      </div>
+ 
+
+
+
+
+      
     </div>
   );
 }

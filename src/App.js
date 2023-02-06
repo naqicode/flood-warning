@@ -5,13 +5,14 @@ import NavBar from './component/NavBar.js';
 // import BoxThree from './component/pages/BoxThree';
 
 
+
 function App() {
   return (
     <div className="App">
 
       
         <NavBar />
-        <BoxOne />
+        <BoxOne/>
 
         {/* <BoxThree /> */}
 
