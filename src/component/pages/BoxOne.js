@@ -313,21 +313,32 @@ function BoxOne() {
                 </div>
               )}
 
-
-
-
-
-
-
-
         </ul>
+
+
+
+
+        <div className="footer">
+                <div>
+                <p>
+                    Copyright &copy; Your Website 2022
+                </p>
+                </div>
+        </div>
+
+
+
  
-
-
-
+    </div>
 
       
-    </div>
+
+              
+
+
+
+
+
   );
 }
 

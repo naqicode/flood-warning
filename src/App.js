@@ -6,6 +6,7 @@ import NavBar from './component/NavBar.js';
 
 
 
+
 function App() {
   return (
     <div className="App">
@@ -13,6 +14,7 @@ function App() {
       
         <NavBar />
         <BoxOne/>
+       
 
         {/* <BoxThree /> */}
 
