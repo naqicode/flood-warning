@@ -1,8 +1,13 @@
 import './App.css';
 import BoxOne from './component/pages/BoxOne';
-// import Home from './component/Home';
+import Home from './component/Home';
 import NavBar from './component/NavBar.js';
-// import BoxThree from './component/pages/BoxThree';
+import BoxTwo from './component/pages/BoxTwo'
+import BoxThree from './component/pages/BoxThree';
+
+//Importing Browser Router
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React from 'react';
 
 
 
@@ -12,18 +17,17 @@ function App() {
     <div className="App">
 
       
-        <NavBar />
-        <BoxOne/>
-       
-
-        {/* <BoxThree /> */}
-
-
-
-      {/* The home page is finished */}
-      
-      {/* <Home />  */}
-      {/* <BoxOne /> */}
+     <React.StrictMode>
+        <Router>
+            <NavBar />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='BoxOne' element={<BoxOne />} />
+            <Route path='BoxTwo' element={<BoxTwo />} />
+            <Route path='BoxThree' element={<BoxThree />} />
+          </Routes>
+        </Router>
+     </React.StrictMode>
 
     </div>
   );

@@ -124,7 +124,7 @@ function BoxOne() {
             position: "relative",
             left: "500px",
             display: "flex",
-            top: "62px",
+            top: "50px",
           }}
         >
           <TileLayer
